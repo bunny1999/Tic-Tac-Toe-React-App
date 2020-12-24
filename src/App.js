@@ -165,7 +165,7 @@ const App = ({ history }) => {
               <Button
                 className="play-button btn-outline-light border-0 bg-white"
                 color="white"
-                onClick={message ? () => onPress(index) : null}
+                onClick={!message ? () => onPress(index) : null}
               >
                 <img
                   className="bg-transparent"
