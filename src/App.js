@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./App.css";
 import circle from "./assets/circle.png";
 import cross from "./assets/cross.png";
-import edit from './assets/edit.png'
+import edit from "./assets/edit.png";
 import { withRouter } from "react-router-dom";
 import setting from "./assets/setting.png";
 import { Button } from "reactstrap";
@@ -120,13 +120,13 @@ const App = ({ history }) => {
       items[2] === items[4] &&
       items[2] === items[6]
     ) {
-      return items[0];
+      return items[2];
     } else if (!items.includes("empty")) {
       return GAMEOVER;
     }
   };
 
-  const reset=()=>{
+  const reset = () => {
     items = Array(9).fill("empty");
     setState({
       symbol: stateSymbol,
@@ -134,7 +134,7 @@ const App = ({ history }) => {
       circleScore: circleScore,
       message: null,
     });
-  }
+  };
 
   return (
     <div className="d-flex full-height justify-content-center align-items-center flex-column">
@@ -165,7 +165,7 @@ const App = ({ history }) => {
               <Button
                 className="play-button btn-outline-light border-0 bg-white"
                 color="white"
-                onClick={() => onPress(index)}
+                onClick={message ? () => onPress(index) : null}
               >
                 <img
                   className="bg-transparent"
@@ -180,7 +180,11 @@ const App = ({ history }) => {
       </div>
       <div className="d-flex flex-column justify-content-start flex-grow-1 flex-column">
         {message ? (
-          <Button color="primary" onClick={reset} className="rounded-pill shadow mb-3">
+          <Button
+            color="primary"
+            onClick={reset}
+            className="rounded-pill shadow mb-3"
+          >
             One more game
           </Button>
         ) : (
